@@ -1,0 +1,117 @@
+<main>
+    <section id="hero-image" *ngIf="!isAuth">
+        <div class="hero-marketing-text">
+            <h1>The Best <span>Games</span> Out There</h1>
+        </div>
+        <a class="scroll-bt" (click)="scrollToElement(target)"><span></span></a>
+    </section>
+
+    <section id="game-types-boxes" #target>
+        <h1>Best games</h1>
+        <div class="flex">
+            <ng-template ngFor let-game [ngForOf]="gamesList">
+                <div class="box new" data-aos="zoom-in"
+                    style="background: url('{{ game?.background_image }}') top center no-repeat; background-size: cover;">
+                    <div class="shade"></div>
+                    <div class="contents">
+                        <h4>{{ game?.name }}</h4>
+                        <a href="game-details/{{ game?.id }}" class="comments">Details</a>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+        <div class="details-container">
+            <a href="games/page/1">See all</a>
+        </div>
+    </section>
+
+    <section id="recent-games">
+        <h1>Best prices</h1>
+        <div class="flex">
+            <ng-template ngFor let-new [ngForOf]="shopList" let-index="index">
+                <div class="box" data-aos="slide-up" *ngIf="index < 3">
+                    <span class="badge new" *ngIf="new?.discount">{{ new?.discount }}</span>
+                    <img src="{{ new?.img }}" />
+                    <div class="box-lower-section">
+                        <h4>{{ new?.title }}</h4>
+                        <p>{{ new?.price }}$</p>
+                        <a href="{{ new?.url }}" class="comments" target="_blank">Details</a>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </section>
+
+    <section id="tournaments">
+        <div class="flex">
+            <span class="badge tournaments">Upcoming tournaments</span>
+            <div class="box" *ngFor="let tournament of upcomingTournaments">
+                <span class="badge premium-tournament">{{ tournament?.league?.name }}</span>
+                <div class="tournaments-image">
+                    <img src="../../../assets/img/Games logo/{{ tournament?.videogame?.slug }}.png" />
+                </div>
+                <div class="tournaments-content">
+                    <h3>{{ tournament?.videogame?.name }}</h3>
+                    <div><label>Tournament Begins: </label> <strong>{{ tournament?.begin_at | date: 'MMMM dd, yyyy;
+                            hh:mm:ss' }}</strong></div>
+                    <div><label>Tournament Ends: </label> <strong>{{ tournament?.end_at | date: 'MMMM dd, yyyy;
+                            hh:mm:ss' }}</strong></div>
+                    <div><label>Participants: </label> <strong>{{ tournament?.teams?.length }} teams</strong></div>
+                    <div><label>Quantity: </label> <strong>{{ tournament?.matches?.length }} matches</strong></div>
+                    <div *ngIf="tournament?.prizepool"><label>Prize: </label> <strong>{{ tournament?.prizepool
+                            }}</strong></div>
+                    <div><a routerLink="tournament/{{ tournament?.id }}">Details</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="details-container">
+            <a href="esport">See all</a>
+        </div>
+
+    </section>
+
+    <section id="recent-reviews">
+        <h1>Free-to-play games</h1>
+        <div class="flex">
+            <ng-template ngFor let-game [ngForOf]="freeGames" let-index="index">
+                <div class="box" data-aos="zoom-out-right" *ngIf="index < 4">
+                    <div class="recent-reviews-image">
+                        <a href="{{ game?.freetogame_profile_url }}" target="_blank">
+                            <img src="{{ game?.thumbnail }}" />
+                        </a>
+                    </div>
+                    <div>
+                        <h4>{{ game?.title }}</h4>
+                        <p>{{ game?.short_description }}</p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </section>
+
+    <section id="posts-comments">
+        <div class="flex">
+            <div class="game-warrior">
+                <img src="https://onclickwebdesign.com/wp-content/uploads/footer_logo.png" />
+                <p>Lorem ipsum dolor sit amet, consectectur adipiscing ipsum dolor sit amet.</p>
+                <img class="footer-graphic"
+                    src="https://onclickwebdesign.com/wp-content/uploads/sword_lady_footer.png" />
+            </div>
+
+            <div class="posts-comments-box" data-aos="zoom-in">
+                <h3>Latest articles</h3>
+                <ng-template ngFor let-new [ngForOf]="newsList">
+                    <div class="post-item">
+                        <img src="{{ new?.image?.original }}" />
+                        <div>
+                            <h5>{{ new?.release_date | date: 'MMMM dd, yyyy' }}</h5>
+                            <p>{{ new?.description | slice: 0:50 }}...</p>
+                            <small><a href="{{ new?.site_detail_url }}" target="_blank"
+                                    style="color: #ddd; text-decoration: underline;">Details</a></small>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </section>
+</main>

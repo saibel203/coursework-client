@@ -1,0 +1,37 @@
+<div class="details" *ngIf="article">
+    <div class="details-container">
+        <div class="details-header">
+            <h1>{{ article?.title }}</h1>
+            <h2>{{ article?.deck }}</h2>
+        </div>
+        <div class="details-info">
+            Creator: <span>{{ article?.authors }}</span>; Publish: {{ article?.publish_date }}
+            <a href="{{ article?.site_detail_url }}" target="_blank"> Original article</a>
+        </div>
+
+        <div class="details-content">
+            <!-- <img src="{{ article?.image?.original }}" alt="image"> -->
+
+            <div class="description" [innerHTML]="article?.body"></div>
+
+            <div class="categories">
+                <div class="projcard-tagbox">
+                    <a class="projcard-tag" *ngFor="let category of article?.categories">
+                        {{ category?.name }}
+                    </a>
+                </div>
+            </div>
+
+            <div class="associations" *ngIf="article?.associations.length != 0">
+                <h3>Similar articles</h3>
+                <div class="assoc" *ngFor="let assoc of article?.associations">
+                    <a href="new-details/{{ assoc?.id }}">{{ assoc?.name }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!article">
+    <h1>Статья удалена</h1>
+</div>

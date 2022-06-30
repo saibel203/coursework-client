@@ -1,0 +1,68 @@
+<main class="profile-main">
+    <div class="container">
+        <main>
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label for="tab1"><i class="uil uil-user"></i> Data</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2"><i class="uil uil-edit"></i> Edit</label>
+
+            <section id="content1">
+                <div class="profile-container">
+                    <div class="avatar-flip">
+                        <img src="{{ userImage?.path }}" alt="Profile image" height="150" width="150"
+                            *ngIf="userImage?.path">
+                        <img src="../../../assets/img/profile-image.png" alt="Profile image" height="150" width="150"
+                            *ngIf="!userImage?.path">
+                    </div>
+                    <h2>{{ userDetails?.name }} {{ userDetails?.lastName }} <span>user</span></h2>
+                    <h4>{{ userDetails?.userName }}</h4>
+                    <p>{{ userDetails?.description }}</p>
+                    <p><small>{{ userDetails?.email }}</small></p>
+                </div>
+            </section>
+            <section id="content2">
+                <form class="data-change-form" autocomplete="off" [formGroup]="service.editProfileModel"
+                    (ngSubmit)="onEditProfile()">
+                    <div class="form-change-container">
+                        <div class="column">
+                            <label>First name</label>
+                            <input type="text" name="firstName" formControlName="Name">
+
+                            <label>Last name</label>
+                            <input type="text" name="lastName" formControlName="LastName">
+
+                            <label>Change your role</label>
+                            <select name="reason">
+                                <option value="user">User</option>
+                                <option value="writer">Writer</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div class="column">
+                            <label for="the-message">Description</label>
+                            <textarea name="message" id="the-message" formControlName="Description"></textarea>
+                        </div>
+                    </div>
+                    <div class="drop-container">
+                        <div class="drop">
+                            <i class="uil uil-image icon"></i>
+                            <span class="text">Drag and drop image here</span>
+                            <div class="or-con">
+                                <span class="line"></span>
+                                <span class="or">or</span>
+                                <span class="line"></span>
+                            </div>
+                            <label for="file-upload">Browse file</label>
+                            <input type="file" id="file-upload" class="file-input" #file formControlName="ImagePath"
+                                (change)="uploadFile(file.files)">
+                        </div>
+                        <div class="progress"></div>
+                        <h2 id="header-progress">Загрузка завершена успешно</h2>
+                    </div>
+                    <input type="submit" value="Send changes">
+                </form>
+            </section>
+        </main>
+    </div>
+</main>

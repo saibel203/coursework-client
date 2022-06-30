@@ -1,0 +1,61 @@
+<main class="games-main">
+    <div class="container">
+        <div class="games">
+            <h2>Last news <span></span></h2>
+
+            <div class="games-select">
+                <form #form="ngForm" (ngSubmit)="onSearchNewsSubmit(form)">
+                    <input type="text" name="search" placeholder="Search games" class="game-search" ngModel>
+                    <input type="submit" value="Search" class="games-button-select" role="button">
+                </form>
+            </div>
+
+            <div class="games-container">
+                <div class="projcard projcard-blue" *ngFor="let article of news">
+                    <div class="projcard-innerbox">
+                        <img class="projcard-img" src="{{ article?.image?.original }}" *ngIf="article?.image?.original">
+                        <img src="https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled.png" alt="Image don't found" class="projcard-img" *ngIf="!article?.image?.original">
+                        <div class="projcard-textbox">
+                            <div class="projcard-title">{{ article?.title }}</div>
+                            <div class="projcard-subtitle">Categories: 
+                                <span *ngFor="let category of article?.categories; let last = last">{{ category?.name }}<span
+                                        *ngIf="!last">, </span></span>
+                            </div>
+                            <div class="projcard-description">{{ article?.deck }}...</div>
+                            <div class="projcard-author">{{ article?.authors }}</div>
+                            <div class="projcard-date">Publication date: {{ article?.publish_date }}</div>
+                            <div class="projcard-link">
+                                <a (click)="openNewDetails(article?.id)" class="projcard-link__innder">Read all</a>
+                            </div>
+                            <div class="projcard-tagbox">
+                                <!-- <ng-template ngFor let-tag [ngForOf]="game?.tags" let-i='index'>
+                                        <a class="projcard-tag" *ngIf="i < 4">
+                                            {{ tag.name }}
+                                        </a>
+                                </ng-template> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="pagination">
+                    <a href="{{ games?.previous }}">
+                        <button class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="btn--icon" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                    </a>
+                    <a href="{{ games?.next }}">
+                        <button class="btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="btn--icon" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</main>

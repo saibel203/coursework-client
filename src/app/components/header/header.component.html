@@ -1,0 +1,126 @@
+<header>
+	<div class="flex">
+		<div class="logo">
+			<a routerLink="/">SBGames</a>
+		</div>
+		<nav>
+			<button id="nav-toggle" class="hamburger-menu">
+				<span class="strip"></span>
+				<span class="strip"></span>
+				<span class="strip"></span>
+			</button>
+			<ul id="nav-menu-container">
+				<li><a routerLink="/">Home</a></li>
+				<li><a routerLink="games/page/1">Games</a></li>
+				<li><a routerLink="news">News</a></li>
+				<li><a routerLink="esport">Tournaments</a></li>
+				<li><a routerLink="save-money">Save money</a></li>
+			</ul>
+		</nav>
+		<a id="login-register-button" *ngIf="!isAuth">Login / Register</a>
+		<div class="account-drop" *ngIf="isAuth">
+			<i class="uil uil-user account" id="header__account" (click)="showFunction()"></i>
+			<div id="account-dropdown" class="dropdown-content">
+				<a routerLink="/profile">Profile</a>
+				<a (click)="onLogOut()" style="cursor: pointer;">Log out</a>
+			</div>
+		</div>
+	</div>
+</header>
+
+<div class="overlay" id="overlay" *ngIf="!isAuth"></div>
+
+<div class="modal-container" *ngIf="!isAuth">
+	<div class="forms">
+		<div class="form login">
+			<div class="close" id="close-button">
+				<i class="uil uil-multiply"></i>
+			</div>
+			<span class="title">Авторизация</span>
+			<form autocomplete="off" #form="ngForm" (ngSubmit)="onAuthSubmit(form)">
+				<div class="input-field">
+					<input type="text" placeholder="Введите логин" name="UserName" required #UserName="ngModel"
+						[(ngModel)]="formAuthModel.UserName">
+					<i class="uil uil-user icon"></i>
+				</div>
+				<div class="input-field">
+					<input type="password" class="password" placeholder="Введите пароль" name="Password" required
+						#Password="ngModel" [(ngModel)]="formAuthModel.Password">
+					<i class="uil uil-lock icon"></i>
+					<i class="uil uil-eye-slash showHidePw"></i>
+				</div>
+				<div class="checkbox-text">
+					<div class="checkbox-content">
+						<input type="checkbox" id="logCheck">
+						<label for="logCheck" class="text">Запомнить</label>
+					</div>
+					<a href="#" class="text">Забыли пароль?</a>
+				</div>
+				<div class="input-field button">
+					<input type="submit" value="Авторизоваться">
+				</div>
+			</form>
+			<div class="login-signup">
+				<span class="text">Нет аккаунта?
+					<a class="text signup-link">Зарегистрироваться</a>
+				</span>
+			</div>
+		</div>
+		<!-- Registration Form -->
+		<div class="form signup">
+			<span class="title">Регистрация</span>
+			<form autocomplete="off" [formGroup]="service.formRegisterModel" (ngSubmit)="onRegisterSubmit()">
+				<div class="input-field">
+					<input type="text" placeholder="Enter login" required formControlName="UserName">
+					<i class="uil uil-user"></i>
+				</div>
+				<label class="input__text-error"
+					*ngIf="service.formRegisterModel.get('UserName')?.touched && service.formRegisterModel.get('UserName')?.errors?.['required']">Required
+					field</label>
+				<div class="input-field">
+					<input type="text" placeholder="Enter email" required formControlName="Email">
+					<i class="uil uil-envelope icon"></i>
+				</div>
+				<label class="input__text-error"
+					*ngIf="service.formRegisterModel.get('Email')?.touched && service.formRegisterModel.get('Email')?.errors?.['required']">Required
+					field</label>
+				<label class="input__text-error"
+					*ngIf="service.formRegisterModel.get('Email')?.touched && service.formRegisterModel.get('Email')?.errors?.['email']">Input
+					Error</label>
+				<div formGroupName="Passwords">
+					<div class="input-field">
+						<input type="password" class="password" placeholder="Enter password" required
+							formControlName="Password">
+						<i class="uil uil-lock icon"></i>
+					</div>
+					<label class="input__text-error"
+						*ngIf="service.formRegisterModel.get('Passwords.Password')?.touched && service.formRegisterModel.get('Passwords.Password')?.errors?.['required']">Required
+						field</label>
+					<label class="input__text-error"
+						*ngIf="service.formRegisterModel.get('Passwords.Password')?.touched && service.formRegisterModel.get('Passwords.Password')?.errors?.['minlength']">Minimum
+						length 6 characters</label>
+					<label class="input__text-error"
+						*ngIf="service.formRegisterModel.get('Passwords.Password')?.touched && service.formRegisterModel.get('Passwords.Password')?.errors?.['passwordDigitOrSymbolError']">The
+						password must contain at least 1 number and 1 letter of the Latin alphabet</label>
+					<div class="input-field">
+						<input type="password" class="password" placeholder="Confirm password" required
+							formControlName="ConfirmPassword">
+						<i class="uil uil-lock icon"></i>
+						<i class="uil uil-eye-slash showHidePw"></i>
+					</div>
+					<label class="input__text-error"
+						*ngIf="service.formRegisterModel.get('Passwords.ConfirmPassword')?.touched && service.formRegisterModel.get('Passwords.ConfirmPassword')?.errors?.['passwordMismatch']">Пароли
+						должны совпадать</label>
+				</div>
+				<div class="input-field button">
+					<input type="submit" value="Зарегистрироваться">
+				</div>
+			</form>
+			<div class="login-signup">
+				<span class="text">Аккаунт уже существует?
+					<a class="text login-link">Авторизоваться</a>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>

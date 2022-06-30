@@ -1,0 +1,90 @@
+<div class="details">
+    <div class="game-banner">
+        <img src="{{ game?.background_image }}" alt="Background image" class="game-banner-img">
+    </div>
+    <div class="game-content">
+        <div class="details-wrapper">
+            <div class="game-header">
+                <h1 class="game-header-title">{{ game?.name }}</h1>
+                <h2 class="game-header-release-date">Release: {{ game?.released | date }}</h2>
+                <p class="game-header-genres">
+                    <span *ngFor="let genre of game?.genres; let last = last">
+                        {{ genre?.name }}<span *ngIf="!last">, </span>
+                    </span>
+                </p>
+                <div class="game-gauge">
+                    <mwl-gauge class="two" [max]="100" [dialStartAngle]="180" [dialEndAngle]="0" [value]="gameRating"
+                        [animated]="true" [color]="getColor" [animationDuration]="2"></mwl-gauge>
+                    <a href="{{ game?.metacritic_url }}" target="_blank" class="game-gauge-label">Metacritic</a>
+                </div>
+            </div>
+            <div class="tabs-wrapper">
+                <ul class="nav-tabs">
+                    <li class="nav-item tab is-active" data-role="tab" data-target="#tabs-home3">About</li>
+
+                    <li class="nav-item tab" data-role="tab" data-target="#tabs-profile3">Screenshots</li>
+
+                    <li class="nav-item tab" data-role="tab" data-target="#tabs-messages3">Trailers</li>
+
+                    <li class="nav-item tab" data-role="tab" data-target="#tabs-messages4">Series games</li>
+
+                    <li class="nav-item tab" data-role="tab" data-target="#tabs-messages5">DLC</li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-panel is-active" id="tabs-home3">
+                        <h1>About</h1>
+                        <p *ngIf="game?.parent_platforms?.length" class="game-tabs-par">
+                            Platforms:
+                            <span *ngFor="let game of game?.parent_platforms; let last = last">{{ game?.platform?.name
+                                }}<span *ngIf="!last">, </span></span>
+                        </p>
+                        <p *ngIf="game?.publishers?.length" class="game-tabs-par">
+                            Publishers:
+                            <span *ngFor="let publisher of game?.publishers; let last = last">{{ publisher?.name }}<span
+                                    *ngIf="!last">, </span></span>
+                        </p>
+                        <p *ngIf="game?.website" class="game-tabs-par">
+                            Site:
+                            <a class="game-tabs-link" href="{{ game?.website }}" target="_blank">{{ game?.website }}</a>
+                        </p>
+                        <div class="game-description" [innerHTML]="game?.description"></div>
+
+                        <div class="projcard-tagbox">
+                            <span class="projcard-tag" *ngFor="let tag of game?.tags"><a href="">{{ tag?.name }}</a></span>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tabs-profile3">
+                        <h1>Screenshots</h1>
+                        <img class="game-screenshot" *ngFor="let screenshot of game?.photos"
+                            src="{{ screenshot?.image }}" alt="screenshot" />
+                    </div>
+                    <div class="tab-panel" id="tabs-messages3">
+                        <div *ngIf="game?.trailers?.length">
+                            <h1>Trailers</h1>
+                            <video class="game-trailer" controls *ngFor="let trailer of game?.trailers">
+                                <source src="{{ trailer?.data?.max }}" type="video/mp4" />
+                                Ваш браузер не поддерживает видео.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tabs-messages4">
+                        <h1>Series games</h1>
+                        <div class="series-game" *ngFor="let serie of game?.series">
+                            <h2><a href="game-details/{{ serie?.id }}">{{ serie?.name }}</a></h2>
+                            <img src="{{ serie?.background_image }}" alt="{{ serie?.name }} image">
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tabs-messages5">
+                        <h1>DLC</h1>
+                        <div class="series-game" *ngFor="let dlc of game?.dlc">
+                            <h2><a href="game-details/{{ dlc?.id }}">{{ dlc?.name }}</a></h2>
+                            <img src="{{ dlc?.background_image }}" alt="{{ dlc?.name }} image">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

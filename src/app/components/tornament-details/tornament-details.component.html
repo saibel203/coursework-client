@@ -1,0 +1,59 @@
+<main class="tournament-main">
+    <div class="tournament-container">
+        <main>
+            <input id="tab1" type="radio" name="tabs" checked>
+            <label for="tab1"><i class="uil uil-document-info"></i> Tournament details</label>
+
+            <input id="tab2" type="radio" name="tabs">
+            <label for="tab2"><i class="uil uil-users-alt"></i> Teams</label>
+
+            <input id="tab3" type="radio" name="tabs">
+            <label for="tab3"><i class="uil uil-game-structure"></i> Matches</label>
+
+            <section id="content1">
+                <h1>{{ tourtament?.league?.name }} <span>{{ tourtament?.videogame?.name }}</span></h1>
+                <div class="main-description">
+                    <img src="{{ tourtament?.league?.image_url }}" alt="{{ tourtament?.league?.name }}">
+                    <div class="tournament-description">
+                        <p><label>Tournament Begins: </label> <strong>{{ tourtament?.begin_at | date: 'MMMM dd, yyyy;
+                                hh:mm:ss' }}</strong></p>
+                        <p><label>Tournament Ends: </label> <strong>{{ tourtament?.end_at | date: 'MMMM dd, yyyy;
+                                hh:mm:ss' }}</strong></p>
+                        <p><label>Participants: </label> <strong>{{ tourtament?.teams?.length }}</strong></p>
+                        <p><label>Quantity: </label> <strong>{{ tourtament?.matches?.length }}</strong></p>
+                    </div>
+                </div>
+            </section>
+            <section id="content2">
+                <div class="team-details" *ngFor="let team of tourtament?.teams">
+                    <h2>{{ team?.name }}</h2>
+                    <div class="team-description">
+                        <img src="{{ team?.image_url }}" alt="{{ team?.name }} image" *ngIf="team?.image_url">
+                        <img src="../../../assets/img/image-not-found.png" alt="{{ team?.name }} image"
+                            *ngIf="!team?.image_url">
+
+                        <p><label>Players: </label></p>
+
+                        <div *ngFor="let expected_roster of tourtament?.expected_roster">
+                            <p *ngIf="expected_roster?.team?.slug == team?.slug">
+                                <strong *ngFor="let player of expected_roster?.players, let last = last">
+                                    {{ player?.name }} <span *ngIf="!last">, </span>
+                                </strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="content3">
+                <div class="match-container" *ngFor="let match of tourtament?.matches">
+                    <h1>{{ match?.name }}</h1>
+                    <div class="match-details">
+                        <p>Begin at: {{ match?.begin_at | date: 'MMMM dd, yyyy;
+                            hh:mm:ss' }}</p>
+                        <a href="{{ match?.official_stream_url }}" target="_blank">Watch Broadcast</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</main>

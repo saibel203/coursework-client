@@ -1,0 +1,24 @@
+<div class="esport-container">
+    <section id="recent-games">
+        <div class="flex">
+            <div class="box" *ngFor="let tournament of upcomingTournaments">
+                <img src="{{ tournament?.league?.image_url }}" alt="{{ tournament?.league?.name }} image" *ngIf="tournament?.league?.image_url">
+                <img src="../../../assets/img/image-not-found.png" alt="Image don't found" class="projcard-img"
+                    *ngIf="!tournament?.league?.image_url">
+                <div class="box-lower-section">
+                    <h4>{{ tournament?.league?.name }}</h4>
+                    <p><span class="game-description">Start</span>: {{ tournament?.begin_at | date: 'MMMM dd, yyyy; hh:mm:ss' }}</p>
+                    <p><span class="game-description">End</span>: {{ tournament?.end_at | date: 'MMMM dd, yyyy; hh:mm:ss' }}</p>
+                    <p><span class="game-description">Game</span>: {{ tournament?.videogame?.name }}</p>
+                    <p><span class="game-description">Matches</span>: {{ tournament?.matches?.length }}</p>
+                    <p><span class="game-description">Teams</span>: {{ tournament?.teams?.length }}</p>
+                    <p *ngIf="tournament?.prizepool"><span class="game-description">Prize</span>: {{ tournament?.prizepool }}</p>
+
+                    <div class="game-btn">
+                        <a (click)="openTournamentDetails(tournament?.id)" class="game-details">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

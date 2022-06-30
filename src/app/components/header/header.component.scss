@@ -1,0 +1,348 @@
+$error-text: #cc0000;
+
+header {
+    background-color: #131313;
+    padding: 20px 0;
+    position: relative;
+    border-bottom: 1px solid #FFB320;
+
+    .flex {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        justify-content: space-between;
+
+        .logo {
+            display: flex;
+            align-items: center;
+
+            a {
+                color: #fff;
+                font-size: 25px;
+                font-weight: 900;
+            }
+        }
+
+
+        #login-register-button {
+            background-color: #FFB320;
+            color: #131313;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition-duration: .3s;
+            cursor: pointer;
+            height: 100%;
+
+            &:hover {
+                background-color: #b88112;
+            }
+        }
+    }
+
+    .hamburger-menu {
+        background-color: transparent;
+        border: 1px solid #FFB320;
+        padding: 3px 5px;
+        width: 30px;
+        cursor: pointer;
+        display: none;
+
+        .strip {
+            display: block;
+            height: 1px;
+            background-color: #FFB320;
+            margin: 4px 0;
+        }
+    }
+
+    nav {
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0 0;
+
+            li {
+                display: inline-block;
+                font-size: 1em;
+                margin: 0 18px;
+
+                a {
+                    color: #eee;
+                    font-weight: 600;
+                    transition-duration: .2s;
+
+                    &:hover {
+                        color: #FFB320;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal-container {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 20px;
+    margin-top: 100px;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: all .3s ease;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &.active .login {
+        margin-left: -50%;
+        opacity: 0;
+        transition: margin-left 0.18s ease, opacity 0.15s ease;
+    }
+
+    &.active .signup {
+        opacity: 1;
+        transition: opacity 0.2s ease;
+    }
+
+    &.active .forms {
+        height: 600px;
+    }
+
+    .signup {
+        opacity: 0;
+        transition: opacity 0.09s ease;
+    }
+
+    .forms {
+        display: flex;
+        align-items: center;
+        height: 440px;
+        width: 200%;
+        transition: height 0.2s ease;
+        z-index: 999;
+
+        .form {
+            width: 50%;
+            padding: 30px;
+            background-color: #fff;
+            transition: margin-left 0.18s ease;
+
+            .input__text-error {
+                color: $error-text;
+                font-size: .8em;
+            }
+
+            .close i {
+                cursor: pointer;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 1.4em;
+            }
+
+            .title {
+                position: relative;
+                font-size: 27px;
+                font-weight: 600;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    height: 3px;
+                    width: 30px;
+                    background-color: #4070f4;
+                    border-radius: 25px;
+                }
+            }
+
+            .input-field {
+                position: relative;
+                min-height: 50px;
+                width: 100%;
+                margin-top: 20px;
+
+                i {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    color: #999;
+                    font-size: 23px;
+                    transition: all 0.2s ease;
+
+                    &.icon {
+                        left: 0;
+                    }
+
+                    &.showHidePw {
+                        right: 0;
+                        cursor: pointer;
+                        padding: 10px;
+                    }
+                }
+
+                input {
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    padding: 0 35px;
+                    border: none;
+                    outline: none;
+                    font-size: 16px;
+                    border-bottom: 2px solid #ccc;
+                    border-top: 2px solid transparent;
+                    transition: all 0.2s ease;
+
+                    &.ng-invalid.ng-touched,
+                    &.ng-invalid.ng- {
+                        border-bottom: 2px solid $error-text;
+
+                        &~i {
+                            color: $error-text;
+                        }
+                    }
+
+                    &:is(:focus, :valid) {
+                        border-bottom-color: #4070f4;
+                    }
+
+                    &:is(:focus, :valid)~i {
+                        color: #4070f4;
+                    }
+                }
+            }
+
+            .checkbox-text {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: 20px;
+
+                .checkbox-content {
+                    display: flex;
+                    align-items: center;
+
+                    input {
+                        margin: 0 8px -2px 4px;
+                        accent-color: #4070f4;
+                    }
+                }
+            }
+
+            .text {
+                color: #333;
+                font-size: 14px;
+            }
+
+            a {
+                &.text {
+                    color: #4070f4;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .button {
+                margin-top: 35px;
+
+                input {
+                    border: none;
+                    color: #fff;
+                    font-size: 17px;
+                    font-weight: 500;
+                    letter-spacing: 1px;
+                    border-radius: 6px;
+                    background-color: #4070f4;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        background-color: #265df2;
+                    }
+                }
+            }
+
+            .login-signup {
+                margin-top: 30px;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(5px);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s linear;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+// Header accout styles
+
+.account-drop {
+    position: relative;
+
+    #header__account {
+        color: #fff;
+        font-size: 28px;
+        padding-top: 3px;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        position: absolute;
+        right: 0;
+        top: calc(100% + 28px - 7px);
+
+        a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+                background-color: #ddd
+            }
+        }
+    }
+
+    .show {
+        display: block;
+    }
+}

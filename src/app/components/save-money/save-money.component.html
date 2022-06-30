@@ -1,0 +1,120 @@
+<div class="price-container">
+    <div class="search-panel">
+        <form #form="ngForm" (ngSubmit)="searchPrice(form)">
+            <input type="text" name="search" placeholder="Search best price on game" class="game-search" ngModel>
+            <input type="submit" value="Search" class="games-button-select">
+        </form>
+    </div>
+    <div class="steam-prices">
+        <h2 class="price-header" *ngIf="!gamesList">Best "Gamer Gate" prices</h2>
+
+        <div class="shop-card__wrapper other-shop" *ngIf="!gamesList">
+            <div class="shop-card__item" *ngFor="let product of gameGateShops">
+                <div class="shop-card__inner gamer-gate">
+                    <div class="shop-card__header">
+                        <img src="{{ product?.img }}" alt="{{ product?.title }}">
+                        <span class="procent" *ngIf="product?.discount">{{ product?.discount }}</span>
+                    </div>
+                    <div class="game_name">{{ product?.title }}</div>
+                    <div class="game-price">
+                        <span class="current-price" *ngIf="product?.discount">{{ product?.price }} {{ product?.currency_tag }}</span>
+                        <span class="old-price" *ngIf="product?.discount">{{ product?.old_price }}</span>
+
+                        <span class="current-price" *ngIf="!product?.discount">{{ product?.old_price }} {{ product?.currency_tag }}</span>
+                    </div>
+                    <div class="desc">
+                        <div class="release" *ngIf="product?.release_date">Release: {{ product?.release_date }}</div>
+                        <div class="rating" *ngIf="product?.rating">Game rating: {{ product?.rating }}</div>
+                    </div>
+                    <div class="shop-details">
+                        <a href="{{ product?.url }}" target="_black">Read all</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="price-line" *ngIf="!gamesList"></div>
+
+        <h2 class="price-header" *ngIf="!gamesList">Best "Steam" prices</h2>
+
+        <div class="shop-card__wrapper" *ngIf="!gamesList">
+            <div class="shop-card__item" *ngFor="let product of steamShops">
+                <div class="shop-card__inner">
+                    <div class="shop-card__header">
+                        <img src="{{ product?.img }}" alt="{{ product?.title }}">
+                        <span class="procent" *ngIf="product?.discount">{{ product?.discount }}</span>
+                    </div>
+                    <div class="game_name">{{ product?.title }}</div>
+                    <div class="game-price">
+                        <span class="current-price" *ngIf="product?.discount">{{ product?.price }} {{ product?.currency_tag }}</span>
+                        <span class="old-price" *ngIf="product?.discount">{{ product?.old_price }}</span>
+
+                        <span class="current-price" *ngIf="!product?.discount">{{ product?.old_price }} {{ product?.currency_tag }}</span>
+                    </div>
+                    <div class="desc">
+                        <div class="release" *ngIf="product?.release_date">Release: {{ product?.release_date }}</div>
+                        <div class="rating" *ngIf="product?.rating">Game rating: {{ product?.rating }}</div>
+                    </div>
+                    <div class="shop-details">
+                        <a href="{{ product?.url }}" target="_black">Read all</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="price-line" *ngIf="!gamesList"></div>
+
+        <h2 class="price-header" *ngIf="!gamesList">Temporary free in "Epic Games"</h2>
+
+        <!-- <div class="shop-card__wrapper">
+            <div class="shop-card__item" *ngFor="let product of freeEpicGames">
+                <div class="shop-card__inner">
+                    <div class="shop-card__header">
+                        <img src="{{ product?.img }}" alt="{{ product?.title }}">
+                    </div>
+                    <div class="game_name">{{ product?.title }}</div>
+                    <div class="game-price">
+                        <span class="current-price" *ngIf="product?.discount">{{ product?.price }} {{ product?.currency_tag }}</span>
+                        <span class="old-price" *ngIf="product?.discount">{{ product?.old_price }}</span>
+
+                        <span class="current-price" *ngIf="!product?.discount">{{ product?.old_price }} {{ product?.currency_tag }}</span>
+                    </div>
+                    <div class="desc">
+                        <div class="release" *ngIf="product?.release_date">Release: {{ product?.release_date }}</div>
+                        <div class="rating" *ngIf="product?.rating">Game rating: {{ product?.rating }}</div>
+                    </div>
+                    <div class="shop-details">
+                        <a href="{{ product?.url }}" target="_black">Read all</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <h2 class="price-header" *ngIf="gamesList">Best prices</h2>
+
+        <div class="shop-card__wrapper search-games-shop other-shop" *ngIf="gamesList">
+            <div class="shop-card__item" *ngFor="let product of gamesList">
+                <div class="shop-card__inner gamer-gate">
+                    <div class="shop-card__header">
+                        <img src="{{ product?.img }}" alt="{{ product?.title }}">
+                        <span class="procent" *ngIf="product?.discount">{{ product?.discount }}</span>
+                    </div>
+                    <div class="game_name">{{ product?.title }}</div>
+                    <div class="game-price">
+                        <span class="current-price" *ngIf="product?.discount">{{ product?.price }} {{ product?.currency_tag }}</span>
+                        <span class="old-price" *ngIf="product?.discount">{{ product?.old_price }}</span>
+
+                        <span class="current-price" *ngIf="!product?.discount">{{ product?.old_price }} {{ product?.currency_tag }}</span>
+                        <span class="current-price" *ngIf="!product?.discount && !product?.old_price">{{ product?.price }} {{ product?.currency_tag }}</span>
+                    </div>
+                    <div class="desc">
+                        <div class="release" *ngIf="product?.release_date">Release: {{ product?.release_date }}</div>
+                        <div class="rating" *ngIf="product?.rating">Game rating: {{ product?.rating }}</div>
+                        <div *ngIf="product?.source">Shop: {{ product?.source }}</div>
+                    </div>
+                    <div class="shop-details">
+                        <a href="{{ product?.url }}" target="_black">Read all</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

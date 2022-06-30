@@ -1,0 +1,129 @@
+.tournament-main .tournament-container {
+    main {
+        min-width: 320px;
+        max-width: 1200px;
+        padding: 50px;
+        margin: 0 auto;
+        background: #fff;
+    }
+
+    section {
+        display: none;
+        padding: 20px 0 0;
+        border-top: 1px solid #ddd;
+    }
+
+    #tab1:checked~#content1,
+    #tab2:checked~#content2,
+    #tab3:checked~#content3,
+    #tab4:checked~#content4 {
+        display: block;
+    }
+
+    input {
+        display: none;
+
+        &:checked+label {
+            color: #555;
+            border: 1px solid #ddd;
+            border-top: 2px solid orange;
+            border-bottom: 1px solid #fff;
+        }
+    }
+
+    label {
+        display: inline-block;
+        margin: 0 0 -1px;
+        padding: 15px 25px;
+        font-weight: 600;
+        text-align: center;
+        color: #bbb;
+        border: 1px solid transparent;
+        transition-duration: .3s;
+
+        &:hover {
+            color: #888;
+            cursor: pointer;
+        }
+    }
+}
+
+#content1 {
+    h1 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: 900;
+
+        span {
+            font-size: .6em;
+            font-weight: 400;
+            color: #FFB320;
+        }
+    }
+
+    .main-description {
+        display: flex;
+
+        img {
+            max-width: 300px;
+        }
+
+        p {
+            margin-left: 20px;
+        }
+    }
+}
+
+#content2 {
+    .team-details {
+        h2 {
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .team-description {
+            display: flex;
+            font-size: 1.3em;
+
+            img {
+                max-width: 300px;
+            }
+
+            strong {
+                display: inline-block;
+                padding: 15px 0 0 0;
+            }
+        }
+    }
+}
+
+#content3 {
+    .match-details {
+        a {
+            text-decoration: underline;
+            color: #FFB320;
+            transition: all .3s ease;
+
+            &:hover {
+                color: #333;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .container label {
+        font-size: 0;
+    }
+
+    .container label:before {
+        margin: 0;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .container label {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,102 @@
+.esport-container {
+    max-width: 1200px;
+    margin: 50px auto;
+
+    .games-container {
+        margin-top: 30px;
+    }
+
+    .flex {
+        display: flex;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .badge {
+        padding: 9px 20px;
+        color: #000;
+        display: inline-block;
+        text-transform: uppercase;
+        font-weight: 600;
+        text-align: center;
+        font-size: 0.75em;
+
+        &.new {
+            background-color: #FFB320;
+        }
+    }
+
+    #recent-games {
+        background-color: #eef2f6;
+        border-top: 1px solid #d6dee7;
+        border-bottom: 1px solid #d6dee7;
+        padding: 20px 0 120px;
+
+        h1 {
+            text-align: center;
+        }
+
+        .box {
+            position: relative;
+            flex-basis: 31%;
+            background-color: #fff;
+
+            .badge {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                z-index: 2;
+            }
+
+            .box-lower-section {
+                padding: 20px;
+
+                .game-btn {
+                    margin: 30px 0;
+                    text-align: center;
+                    cursor: pointer;
+
+                    .game-details {
+                        color: #FFB320;
+                        text-decoration: underline;
+                        transition: all .3s ease;
+                        padding: 20px 70px;
+                        border: 1px solid silver;
+                        border-radius: 20px;
+
+                        &:hover {
+                            color: #000;
+                            background-color: #eeeff4;
+                        }
+                    }
+                }
+
+                .game-description {
+                    color: #333;
+                    font-size: 13px;
+                    font-weight: 700;
+                }
+
+                p {
+                    color: #999;
+                }
+
+                a {
+                    color: #999;
+                    font-size: 0.8em;
+                }
+            }
+
+            img {
+                width: 100%;
+            }
+
+            &:not(:nth-child(-n+3)) {
+                margin-top: 50px;
+            }
+        }
+    }
+}

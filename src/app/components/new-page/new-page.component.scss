@@ -1,0 +1,130 @@
+@import 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap';
+
+
+.details-container {
+    max-width: 1200px;
+    margin: 20px auto;
+
+    .details-header {
+        position: relative;
+
+        h1 {
+            font-size: 38px;
+            line-height: 1em;   
+            font-weight: 700;
+            color: #262626;
+            font-family: 'Source Sans Pro', 'helvetica', sans-serif;
+        }
+
+        h2 {
+            font-size: 17px;
+            line-height: 1em;   
+            font-weight: 400;
+            color: #262626;
+            font-family: 'Source Sans Pro', 'helvetica', sans-serif;
+        }
+
+        &::after {
+            content: '';
+            width: 100%;
+            height: 1px;
+            background: rgb(203, 203, 203);
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+        }
+    }
+
+    .details-info {
+        font-weight: 400;
+        font-size: 1.1em;
+        color: #262626;
+        margin-top: 40px;
+
+        span {
+            color: #FFB320;
+        }
+
+        a {
+            color: rgb(113, 33, 33);
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+    }
+
+    .details-content {
+        margin-top: 25px;
+        display: inline-block;
+
+        img {
+            width: 60%;
+            padding: 0px 15px 15px 0px;
+            float: left;
+        }
+
+        p {
+            color: #262626;
+            font-size: 1.05em;
+        }
+    }
+
+    .description {
+        font-family: 'Source Sans Pro', 'helvetica', sans-serif;
+        color: #262626;
+
+        p {
+            line-height: 2px;
+        }
+    }
+}
+
+.categories {
+    position: relative;
+    margin: 50px 0;
+}
+
+.projcard-tagbox {
+    position: absolute;
+    bottom: 3%;
+    font-size: 14px;
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
+    z-index: 3;
+
+    .projcard-tag {
+        display: inline-block;
+        background: #E0E0E0;
+        color: #777;
+        border-radius: 3px 0 0 3px;
+        line-height: 26px;
+        padding: 0 10px 0 23px;
+        margin: 0 0 5px 20px;
+        cursor: pointer;
+        user-select: none;
+        transition: color 0.2s;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+            height: 6px;
+            left: 10px;
+            width: 6px;
+            top: 10px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-bottom: 13px solid transparent;
+            border-left: 10px solid #E0E0E0;
+            border-top: 13px solid transparent;
+            right: -10px;
+            top: 0;
+        }
+    }
+}

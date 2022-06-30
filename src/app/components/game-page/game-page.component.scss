@@ -1,0 +1,212 @@
+.details {
+    .details-wrapper {
+        max-width: 1200px;
+        margin: 20px auto;
+        position: relative;
+    }
+
+    ::ng-deep mwl-gauge {
+        width: 150px;
+        height: 150px;
+        display: block;
+        padding: 20px;
+
+        .dial {
+            stroke-width: 10;
+        }
+
+        .value {
+            stroke-dasharray: none;
+            stroke-width: 13;
+        }
+
+        .value-text {
+            fill: #fff;
+            font-weight: 700;
+            font-size: 24px;
+        }
+    }
+
+    .game-gauge {
+        position: absolute;
+        top: 60px;
+        right: 0;
+
+        &-label {
+            font-size: 20px;
+            color: #fff;
+            position: relative;
+            bottom: 60px;
+        }
+    }
+}
+
+.game {
+    &-banner {
+        height: 442px;
+        overflow: hidden;
+
+        &-img {
+            width: 100%;
+            filter: blur(5px);
+        }
+    }
+
+    &-content {
+        text-align: center;
+        position: relative;
+        top: -250px;
+    }
+
+    &-header {
+        &-title {
+            font-size: 70px;
+            color: #fff;
+            font-weight: 700;
+            line-height: 70px;
+            white-space: nowrap;
+        }
+
+        &-release-date {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        &-genres {
+            color: #fff;
+            font-weight: 700;
+        }
+    }
+}
+
+// Tabs
+
+$primary: #FFB320;
+$light: #fff;
+
+.tabs-wrapper {
+    box-shadow: 2px 1px 20px #ddd;
+    padding: 1rem;
+    margin-top: 100px;
+    border-radius: 0.5rem;
+    height: 100%;
+    padding-bottom: 100px;
+    max-width: 1200px;
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .nav-tabs {
+        display: flex;
+        justify-content: center;
+
+        li {
+            margin: 0 40px;
+            border: 1px solid #ddd;
+        }
+    }
+}
+
+.tab {
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    transition: all 0.3s ease 0s;
+}
+
+.tab.is-active {
+    background: $primary;
+    color: $light;
+}
+
+.tab-panel {
+    display: none;
+
+    p {
+        line-height: 1.6;
+    }
+
+    &.is-active {
+        display: block;
+    }
+}
+
+.game-trailer {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.game-screenshot {
+    width: calc(50% - 20px);
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.game-description {
+    padding: 20px;
+}
+
+.series-game {
+    border: 1px solid silver;
+    margin-top: 10px;
+
+    a {
+        color: #000;
+    }
+
+    img {
+        width: 50%;
+        padding: 20px;
+    }
+}
+
+.projcard-tagbox {
+    bottom: 3%;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+
+    .projcard-tag {
+        margin-top: 10px;
+        display: inline-block;
+        background: #E0E0E0;
+        color: #777;
+        border-radius: 3px 0 0 3px;
+        line-height: 26px;
+        padding: 0 10px 0 23px;
+        position: relative;
+        margin-right: 20px;
+        cursor: pointer;
+        transition: color 0.2s;
+        z-index: 5; 
+
+        a {
+            color: #777;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+            height: 6px;
+            left: 10px;
+            width: 6px;
+            top: 10px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            border-bottom: 13px solid transparent;
+            border-left: 10px solid #E0E0E0;
+            border-top: 13px solid transparent;
+            right: -10px;
+            top: 0;
+        }
+    }
+}
